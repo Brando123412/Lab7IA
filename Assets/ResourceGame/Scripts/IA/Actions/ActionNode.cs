@@ -10,7 +10,7 @@ public class ActionNode : Action
 {
     protected AICharacterVehicle _AICharacterVehicle;
     protected AICharacterAction _AICharacterAction;
-    protected TypeUniy _TypeUniy;
+    protected TypeUnity _TypeUnity;
     public override void OnStart()
     {
         _AICharacterVehicle = GetComponent<AICharacterVehicle>();
@@ -18,7 +18,7 @@ public class ActionNode : Action
         {
             Debug.LogWarning("Not load component");
         }
-        _AICharacterAction = GetComponent<_AICharacterAction>();
+        _AICharacterAction = GetComponent<AICharacterAction>();
         if (_AICharacterAction == null)
         {
             Debug.LogWarning("Not load component");
@@ -26,11 +26,11 @@ public class ActionNode : Action
 
         if (_AICharacterVehicle != null)
         {
-            _TypeUniy = this._AICharacterVehicle.Health._Unity;
+            _TypeUnity = this._AICharacterVehicle.health._Unity;
         }
         else if (_AICharacterAction != null)
         {
-            _TypeUniy = this._AICharacterAction.Health._Unity;
+            _TypeUnity = this._AICharacterAction.health._Unity;
         }
         base.OnStart();
     }

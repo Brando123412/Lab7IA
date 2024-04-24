@@ -8,7 +8,7 @@ using BehaviorDesigner.Runtime;
 public class AICharacterControl : MonoBehaviour
 {
     protected VisionSensor visionSensor;
-    protected Health health;
+    public Health health;
     public virtual void LoadComponent()
     {
 
