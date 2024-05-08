@@ -10,10 +10,14 @@ public class AICharacterVehicle : AICharacterControl
     }
     #region move
     public virtual void MoveToPosition(Vector3 position) { }
-    public virtual void MoveToPositionEvade() { }
-    public virtual void MoveToPositionWanderEnemy() { }
-    public virtual void MoveToPositionWander() { }
+    public virtual void MoveToPositionEvade(Vector3 pos) { }
+    //public virtual void MoveToPositionWanderEnemy() { }
+    public virtual void MoveToPositionWander(Vector3 pos) { }
     public virtual void MoveToAllied() { }
     public virtual void MoveToEnemy() { }
+    #endregion
+    #region Look
+    public virtual void LookPosition(Vector3 posLook) { }
+    
     #endregion
 }
