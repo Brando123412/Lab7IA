@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
-[TaskCategory("IA SC/Node Base")]
-public class AntionNodeActions : ActionNode
+public class ActionView : ActionNodeActions
 {
     public override void OnStart()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
 [TaskCategory("IA SC/Node Attack")]
-public class ActionFire : AntionNodeActions
+public class ActionFire : ActionNodeActions
 {
     public override void OnStart()
     {
