@@ -32,7 +32,6 @@ public class ActionNode : Action
         else if (_AICharacterAction != null)
         {
             _TypeUnity = this._AICharacterAction.health.typeAgent;
-        }
-        base.OnStart();
+        }             
     }
 }

@@ -8,28 +8,28 @@ public class ActionNotDistanceColliderAttack : ActionRange
     public override void OnStart()
     {
         base.OnStart();
-
     }
-    /*
+    
     public override TaskStatus OnUpdate()
     {
         if (_AICharacterVehicle != null)
         {
-            if (_AICharacterVehicle.Health.IsDead)
+            if (_AICharacterVehicle.health.IsDead)
             {
                 return TaskStatus.Failure;
             }
         }
-        else
-            if (_AICharacterAction != null)
+        if (_AICharacterVehicle != null)
         {
-            if (_AICharacterAction.Health.IsDead)
+            if (_AICharacterVehicle._VisionSensor is VisionSensorAttack)
             {
-                return TaskStatus.Failure;
+                if (!((VisionSensorAttack)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
+                    return TaskStatus.Success;
             }
         }
-        return SwitchUnity();
-    }
+        return TaskStatus.Success;
+       // return SwitchUnity();
+    }                /*
     TaskStatus SwitchUnity()
     {
         switch (UnitSC)
@@ -50,5 +50,5 @@ public class ActionNotDistanceColliderAttack : ActionRange
                 break;
         }
         return TaskStatus.Failure;
-    }      */
+    }            */
 }

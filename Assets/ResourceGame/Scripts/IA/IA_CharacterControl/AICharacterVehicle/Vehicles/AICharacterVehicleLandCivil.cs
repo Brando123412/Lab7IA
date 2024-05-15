@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AICharacterVehicleLandCivil : AICharacterVehicleLandSmart
 {
-    #region move
+    /*#region move
     public override void MoveToPosition(Vector3 position)
     {
         agent.SetDestination(position);
@@ -25,5 +25,5 @@ public class AICharacterVehicleLandCivil : AICharacterVehicleLandSmart
     public override void Evade()
     {
 
-    }
+    }    */
 }

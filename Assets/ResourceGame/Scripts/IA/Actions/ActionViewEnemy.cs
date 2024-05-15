@@ -11,9 +11,16 @@ public class ActionViewEnemy : ActionView
     }
     public override TaskStatus OnUpdate()
     {
-        /*if (_AICharacterVehicle != null)
+        if (_AICharacterVehicle != null)
         {
-            if (_AICharacterVehicle.AIEye.ViewEnemy != null)
+            if (_AICharacterVehicle.health.IsDead)
+            {
+                return TaskStatus.Failure;
+            }
+        }
+        if (_AICharacterVehicle != null)
+        {
+            if (_AICharacterVehicle._VisionSensor.EnemyView != null)
             {
                 return TaskStatus.Success;
             }
@@ -21,12 +28,12 @@ public class ActionViewEnemy : ActionView
         else
         if (_AICharacterAction != null)
         {
-            if (_AICharacterAction.AIEye.ViewEnemy != null)
+            if (_AICharacterAction._VisionSensor.EnemyView != null)
             {
                 return TaskStatus.Success;
             }
         }
-              */
+              
         return TaskStatus.Failure;
     }
 }

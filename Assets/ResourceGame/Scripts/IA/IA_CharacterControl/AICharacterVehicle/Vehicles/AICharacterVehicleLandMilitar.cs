@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AICharacterVehicleLandMilitar : AICharacterVehicleLandSmart
 {
-    public override void Evade()
+    /*public override void Evade()
     {
 
     }
     public void StrategyMove()
     {
-
-    }
+       
+    }    */
 }
