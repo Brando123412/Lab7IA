@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class DataViewBase
 {
     #region RangeView
+
+
     [Header("----- RangeView -----")]
     [Range(0, 180)]
     public float angle = 30f;
@@ -17,7 +19,7 @@ public class DataViewBase
     [Header("----- Owner ----- ")]
     public Health Owner;
 
-    public bool InSight = false;
+    public bool InSight=false;
     #endregion
     [Header("----- DrawGizmo ----- ")]
     public bool IsDrawGizmo = false;
@@ -27,7 +29,7 @@ public class DataViewBase
 
     [Header("----- Occlusionlayers ----- ")]
     public bool InsideObject = false;
-
+    
     public DataViewBase()
     { }
     public virtual bool IsInSight(Transform enemyAimOffset)
@@ -39,21 +41,34 @@ public class DataViewBase
         Vector3 origin = this.Owner.AimOffset.position;
         Vector3 dest = enemyAimOffset.position;
         Vector3 direcction = dest - origin;
+
+        if(direcction.magnitude>distance)
+            return this.InSight;
+
         if (dest.y < -(this.height + this.Owner.transform.position.y) || dest.y > (this.height + this.Owner.transform.position.y))
         {
             return this.InSight;
         }
+
         direcction.y = 0;
+
         float deltaAngle = Vector3.Angle(direcction.normalized, this.Owner.transform.forward);
 
         if (deltaAngle > this.angle)
         {
             return this.InSight;
         }
+
+
+
         if (Physics.Linecast(origin, dest, this.Occlusionlayers) && this.InsideObject)
         {
             return this.InSight;
         }
+
+
+
+
         this.InSight = true;
         return this.InSight;
     }
@@ -148,7 +163,7 @@ public class DataViewBase
 
         if (mesh != null && Owner != null)
         {
-            if (InSight)
+            if(InSight)
                 Gizmos.color = meshSightIn;
             else
                 Gizmos.color = meshSightOut;
@@ -162,12 +177,23 @@ public class VisionSensor : MonoBehaviour
 {
     [Header("Main Vision")]
     public DataViewBase MainVision = new DataViewBase();
+    //[Header("Vision Near")]
+    //public DataViewBase NearVision = new DataViewBase();
     [Space(20)]
     [Header("Enemy View")]
-    public GameObject EnemyView;
+    public Health EnemyView;
+    [Header("Enemy Allied")]
+    public Health AlliedView;
+    [Header("Build Allied")]
+    public Health BuildView;
+
+    [Header("Onwer Health")]
+    public Health health;
+
     [Space(20)]
     [Header("Scan Layer Mask")]
     public LayerMask ScanLayerMask; // Capa de los objetos a detectar
+
     [Space(20)]
     [Header("Frame Rate")]
     #region Rate
@@ -184,10 +210,12 @@ public class VisionSensor : MonoBehaviour
     {
         LoadComponent();
     }
-    public void LoadComponent()
+    public virtual void LoadComponent()
     {
 
         MainVision.Owner = GetComponent<Health>();
+        //NearVision.Owner = MainVision.Owner;
+
         Framerate = 0;
         index = 0;
         arrayRate = new float[bufferSize];
@@ -195,12 +223,14 @@ public class VisionSensor : MonoBehaviour
         {
             arrayRate[i] = (float)UnityEngine.Random.Range(randomWaitScandMin, randomWaitScandMax);
         }
+
+        health = GetComponent<Health>();
     }
-    private void Update()
-    {
-        UpdateScand();
-    }
-    void UpdateScand()
+    //private void Update()
+    //{
+    //    UpdateScand();
+    //}
+    public virtual void UpdateScand()
     {
         if (Framerate > arrayRate[index])
         {
@@ -210,36 +240,81 @@ public class VisionSensor : MonoBehaviour
             Framerate = 0;
         }
         Framerate += Time.deltaTime;
+
+         
     }
-    private void Scan()
+    public virtual void Scan()
     {
-        EnemyView = null;
+
+        EnemyView=null;
+        AlliedView = null;
+        BuildView = null;
         MainVision.InSight = false;
+       
+
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Health health = targetsInViewRadius[i].GetComponent<Health>();
-            if (health != null && MainVision.IsInSight(health.AimOffset))
+             Health health= targetsInViewRadius[i].GetComponent<Health>();
+
+            if( health!=null &&
+                IsNotIsThis(health.gameObject) &&
+                !health.IsDead &&
+                health.IfCanView &&
+                MainVision.IsInSight(health.AimOffset)  
+                )
             {
-                EnemyView = health.GetComponent<GameObject>();
+                 
+                if (health is HealthBuild)
+                    BuildView = health;
+                else
+                if (!IsAllies(health))
+                {
+                    EnemyView = health;
+                }
+                else
+                    AlliedView = health;
+
+                
             }
         }
     }
 
-    private void OnValidate()
+    public void CreateMesh()
     {
         MainVision.CreateMesh();
+        
+    }
+    public virtual bool IsAllies(Health heatlhScan)
+    {
+        for (int j = 0; (health != null && j < health.typeAgentAllies.Length); j++)
+        {
+            if (health.typeAgentAllies[j] == heatlhScan.typeAgent)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    private void OnDrawGizmos()
+    public virtual bool IsNotIsThis( GameObject obj2)
     {
+        return (gameObject.GetInstanceID() != obj2.GetInstanceID());
+    }
+    // Método para dibujar el radio de visión en el editor
+    public void DrawGizmos()
+    {
+
         MainVision.OnDrawGizmos();
+        
+
         Gizmos.color = Color.red;
-        if (EnemyView != null)
+        if(EnemyView!=null)
         {
-            Health currentEnemyView = EnemyView.GetComponent<Health>();
-            Gizmos.DrawLine(MainVision.Owner.AimOffset.position, currentEnemyView.AimOffset.position);
+            Gizmos.DrawLine(MainVision.Owner.AimOffset.position,EnemyView.AimOffset.position);
         }
+        
     }
 }

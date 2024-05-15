@@ -10,7 +10,8 @@ public class ActionNode : Action
 {
     protected AICharacterVehicle _AICharacterVehicle;
     protected AICharacterAction _AICharacterAction;
-    protected TypeUnity _TypeUnity;
+    protected Health MyHealth;
+    protected TypeAgent _TypeUnity;
     public override void OnStart()
     {
         _AICharacterVehicle = GetComponent<AICharacterVehicle>();
@@ -26,11 +27,11 @@ public class ActionNode : Action
 
         if (_AICharacterVehicle != null)
         {
-            _TypeUnity = this._AICharacterVehicle.health._Unity;
+            _TypeUnity = this._AICharacterVehicle.health.typeAgent;
         }
         else if (_AICharacterAction != null)
         {
-            _TypeUnity = this._AICharacterAction.health._Unity;
+            _TypeUnity = this._AICharacterAction.health.typeAgent;
         }
         base.OnStart();
     }

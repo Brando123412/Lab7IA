@@ -16,19 +16,20 @@ public class ActionFollowAllied : ActionNodeVehicle
         {
             return TaskStatus.Failure;
         }
-        SwitchMoveToAllied();
+        _AICharacterVehicle.MoveToAllied();
+        //SwitchMoveToAllied();
         return TaskStatus.Success;
     }
-    void SwitchMoveToAllied()
+    /*void SwitchMoveToAllied()
     {
         switch (_TypeUnity)
         {
-            case TypeUnity.Police:
+            case TypeAgent.Soldier:
                 break;
-            case TypeUnity.Thief:
+            case TypeAgent.Zombie:
                 break;
             default:
                 break;
         }
-    }
+    }     */
 }

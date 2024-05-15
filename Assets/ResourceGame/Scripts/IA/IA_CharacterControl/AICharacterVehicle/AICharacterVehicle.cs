@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AICharacterVehicle : AICharacterControl
 {
+
     public override void LoadComponent()
     {
         base.LoadComponent();

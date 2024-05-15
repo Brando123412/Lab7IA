@@ -22,9 +22,9 @@ public class ActionFire : ActionNodeActions
     {
         switch (_TypeUnity)
         {
-            case TypeUnity.Police:
+            case TypeAgent.Soldier:
                 break;
-            case TypeUnity.Thief:
+            case TypeAgent.Zombie:
                 break;
             default:
                 break;

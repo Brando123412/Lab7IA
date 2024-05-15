@@ -7,7 +7,7 @@ using BehaviorDesigner.Runtime;
 [RequireComponent(typeof(BehaviorTree))]
 public class AICharacterControl : MonoBehaviour
 {
-    protected VisionSensor visionSensor;
+    public VisionSensor _VisionSensor;
     public Health health;
     public virtual void LoadComponent()
     {
