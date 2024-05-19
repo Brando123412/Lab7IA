@@ -15,15 +15,15 @@ public class ActionNode : Action
     public override void OnStart()
     {
         _AICharacterVehicle = GetComponent<AICharacterVehicle>();
-        if (_AICharacterVehicle == null)
+        /*if (_AICharacterVehicle == null)
         {
             Debug.LogWarning("Not load component");
-        }
+        }                                  */
         _AICharacterAction = GetComponent<AICharacterAction>();
-        if (_AICharacterAction == null)
+        /*if (_AICharacterAction == null)
         {
             Debug.LogWarning("Not load component");
-        }
+        }        */
 
         if (_AICharacterVehicle != null)
         {
@@ -32,6 +32,7 @@ public class ActionNode : Action
         else if (_AICharacterAction != null)
         {
             _TypeUnity = this._AICharacterAction.health.typeAgent;
-        }             
+        }         
+        base.OnStart();
     }
 }

@@ -9,9 +9,11 @@ public class AICharacterControl : MonoBehaviour
 {
     public VisionSensor _VisionSensor;
     public Health health;
+    public bool IsDrawGizmos = false;
     public virtual void LoadComponent()
     {
-
+        health = GetComponent<Health>();
+        _VisionSensor = GetComponent<VisionSensor>();
     }
 
 }
