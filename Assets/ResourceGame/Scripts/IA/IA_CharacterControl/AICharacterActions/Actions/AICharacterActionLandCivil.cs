@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class AICharacterActionLandCivil : AICharacterActionLand
 {
+    private void Start()
+    {
+        this.LoadComponent();
+    }
+    public override void LoadComponent()
+    {
+        base.LoadComponent();
+    }
     public virtual void Collect()
     {
 

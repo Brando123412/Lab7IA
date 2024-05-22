@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class AICharacterVehicleLandCivil : AICharacterVehicleLandSmart
 {
-    /*#region move
-    public override void MoveToPosition(Vector3 position)
+    public UnityEngine.Color WanderPosition;
+    private void Start()
     {
-        agent.SetDestination(position);
+        this.LoadComponent();
+    }
+    public override void LoadComponent()
+    {
+        base.LoadComponent();
+
     }
 
-    public override void MoveToPositionWander(Vector3 pos)
+    private void OnDrawGizmos()
     {
-        Debug.Log("Move Wander");
-    }
-    #endregion
+        if (!IsDrawGizmos) return;
 
-    #region Look
-    public override void LookPosition(Vector3 posLook)
-    {
-        Debug.Log("Look position");
+        Gizmos.color = WanderPosition;
+        Gizmos.DrawWireSphere(pointWander, 1f);
     }
-    #endregion
-    public override void Evade()
-    {
-
-    }    */
 }
