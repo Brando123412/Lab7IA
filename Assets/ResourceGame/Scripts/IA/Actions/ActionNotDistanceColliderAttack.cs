@@ -7,7 +7,9 @@ public class ActionNotDistanceColliderAttack : ActionRange
 {
     public override void OnStart()
     {
+        
         base.OnStart();
+        
     }
     
     public override TaskStatus OnUpdate()
@@ -24,10 +26,12 @@ public class ActionNotDistanceColliderAttack : ActionRange
             if (_AICharacterVehicle._VisionSensor is VisionSensorAttack)
             {
                 if (!((VisionSensorAttack)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
+                {
                     return TaskStatus.Success;
+                }
             }
         }
-        return TaskStatus.Success;
+        return TaskStatus.Failure;
        // return SwitchUnity();
     }                /*
     TaskStatus SwitchUnity()

@@ -5,7 +5,7 @@ using BehaviorDesigner.Runtime.Tasks;
 public class ActionViewEnemy : ActionView
 {
     public override void OnStart()
-    {
+    {   
         base.OnStart();
     }
     public override TaskStatus OnUpdate()

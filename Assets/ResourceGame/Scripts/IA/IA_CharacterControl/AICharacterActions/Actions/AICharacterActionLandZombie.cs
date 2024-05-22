@@ -13,7 +13,7 @@ public class AICharacterActionLandZombie : AICharacterActionCombat
     {
         base.LoadComponent();
     }
-    public void Attack()
+    public override void Attack()
     {
         Debug.Log("ATTACK");
     }
