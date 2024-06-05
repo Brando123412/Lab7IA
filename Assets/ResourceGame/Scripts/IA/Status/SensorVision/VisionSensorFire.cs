@@ -6,7 +6,6 @@ public class VisionSensorFire : VisionSensor
 {
     [Header("Vision Fire")]
     public DataViewBase FireVision = new DataViewBase();
-    // Start is called before the first frame update
     private void Start()
     {
         LoadComponent();
@@ -18,7 +17,6 @@ public class VisionSensorFire : VisionSensor
         base.LoadComponent();
     }
 
-    // Update is called once per frame
     void Update()
     {
         this.UpdateScand();

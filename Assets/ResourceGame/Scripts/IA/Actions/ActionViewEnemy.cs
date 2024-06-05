@@ -32,7 +32,6 @@ public class ActionViewEnemy : ActionView
                 return TaskStatus.Success;
             }
         }
-              
         return TaskStatus.Failure;
     }
 }

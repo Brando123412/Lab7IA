@@ -182,17 +182,17 @@ public class VisionSensor : MonoBehaviour
     [Space(20)]
     [Header("Enemy View")]
     public Health EnemyView;
-    [Header("Enemy Allied")]
+    [Header("Allied View")]
     public Health AlliedView;
-    [Header("Build Allied")]
-    public Health BuildView;
+   
+   
 
     [Header("Onwer Health")]
     public Health health;
 
     [Space(20)]
     [Header("Scan Layer Mask")]
-    public LayerMask ScanLayerMask; // Capa de los objetos a detectar
+    public LayerMask ScanLayerMask; 
 
     [Space(20)]
     [Header("Frame Rate")]
@@ -214,7 +214,6 @@ public class VisionSensor : MonoBehaviour
     {
 
         MainVision.Owner = GetComponent<Health>();
-        //NearVision.Owner = MainVision.Owner;
 
         Framerate = 0;
         index = 0;
@@ -226,10 +225,6 @@ public class VisionSensor : MonoBehaviour
 
         health = GetComponent<Health>();
     }
-    //private void Update()
-    //{
-    //    UpdateScand();
-    //}
     public virtual void UpdateScand()
     {
         if (Framerate > arrayRate[index])
@@ -240,15 +235,14 @@ public class VisionSensor : MonoBehaviour
             Framerate = 0;
         }
         Framerate += Time.deltaTime;
-
-         
     }
     public virtual void Scan()
     {
 
         EnemyView=null;
         AlliedView = null;
-        BuildView = null;
+        ResourceView = null;
+        AccommodationView = null;
         MainVision.InSight = false;
        
 
@@ -265,17 +259,24 @@ public class VisionSensor : MonoBehaviour
                 MainVision.IsInSight(health.AimOffset)  
                 )
             {
-                 
-                if (health is HealthBuild)
-                    BuildView = health;
-                else
-                if (!IsAllies(health))
+                if (health.typeAgent == TypeAgent.Resources) {
+                    ResourceView = health;
+                }
+                else if(health.typeAgent == TypeAgent.Accommodation)
                 {
-                    EnemyView = health;
+                    AccommodationView = health;
                 }
                 else
-                    AlliedView = health;
-
+                {
+                    if (!IsAllies(health))
+                    {
+                        EnemyView = health;
+                    }
+                    else 
+                    {
+                        AlliedView = health;
+                    }
+                }
                 
             }
         }
@@ -303,7 +304,6 @@ public class VisionSensor : MonoBehaviour
     {
         return (gameObject.GetInstanceID() != obj2.GetInstanceID());
     }
-    // Método para dibujar el radio de visión en el editor
     public void DrawGizmos()
     {
 
