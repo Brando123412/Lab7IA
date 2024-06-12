@@ -12,4 +12,12 @@ public class HealthCivil : Health
     {
         base.LoadComponent();
     }
+    public void Hide()
+    {
+        IfCanView = false;
+    }
+    public void Show()
+    {
+        IfCanView = true;
+    }
 }

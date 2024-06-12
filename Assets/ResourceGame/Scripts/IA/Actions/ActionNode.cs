@@ -11,6 +11,7 @@ public class ActionNode : Action
     protected AICharacterVehicle _AICharacterVehicle;
     protected AICharacterAction _AICharacterAction;
     protected Health MyHealth;
+    protected VisionSensor _VisionSensor;
     protected TypeAgent _TypeUnity;
     public override void OnStart()
     {
@@ -32,7 +33,16 @@ public class ActionNode : Action
         else if (_AICharacterAction != null)
         {
             _TypeUnity = this._AICharacterAction.health.typeAgent;
-        }         
+        }
+
+        if (_AICharacterVehicle != null && _AICharacterVehicle._VisionSensor!=null)
+        {
+            _VisionSensor = _AICharacterVehicle._VisionSensor;
+        }
+        else if (_AICharacterAction != null && _AICharacterAction._VisionSensor != null)
+        {
+            _VisionSensor = _AICharacterVehicle._VisionSensor;
+        }
         base.OnStart();
     }
 }

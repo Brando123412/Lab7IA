@@ -192,8 +192,10 @@ public class VisionSensor : MonoBehaviour
 
     [Space(20)]
     [Header("Scan Layer Mask")]
-    public LayerMask ScanLayerMask; 
-
+    public LayerMask ScanLayerMask;
+    [Space(20)]
+    [Header("Coun Enemy View")]
+    public int CountEnemyView=0;
     [Space(20)]
     [Header("Frame Rate")]
     #region Rate
@@ -278,7 +280,25 @@ public class VisionSensor : MonoBehaviour
             }
         }   */
     }
+    public void ExtractViewEnemy(ref float min_dist, Health _health)
+    {
+        if (!IsAllies(_health))
+        {
+            float dist = (transform.position - _health.transform.position).magnitude;
+            if (min_dist > dist)
+            {
+                EnemyView = _health;
 
+                min_dist = dist;
+            }
+
+        }
+        else
+        {
+            AlliedView = EnemyView;
+        }
+
+    }
     public void CreateMesh()
     {
         MainVision.CreateMesh();

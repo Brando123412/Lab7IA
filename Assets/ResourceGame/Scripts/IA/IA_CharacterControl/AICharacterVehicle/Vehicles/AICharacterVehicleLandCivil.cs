@@ -14,7 +14,12 @@ public class AICharacterVehicleLandCivil : AICharacterVehicleLandSmart
         base.LoadComponent();
 
     }
-
+    public void MoveToCave()
+    {
+        if (((VisionSensorCivil)_VisionSensor).AccommodationView != null)
+            MoveToPosition(((VisionSensorCivil)_VisionSensor).AccommodationView.transform.position);
+    
+    }
     private void OnDrawGizmos()
     {
         if (!IsDrawGizmos) return;

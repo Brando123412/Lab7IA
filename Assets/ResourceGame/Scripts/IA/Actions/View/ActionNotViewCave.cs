@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [TaskCategory("IA SC/ Node View")]
-public class ActionViewCave : ActionView
+public class ActionNotViewCave : ActionView
 {
     public override void OnStart()
     {
@@ -20,22 +20,15 @@ public class ActionViewCave : ActionView
                 return TaskStatus.Failure;
             }
         }
-        if (_AICharacterVehicle != null)
+        if (_VisionSensor != null && _VisionSensor)
         {
-            if (_AICharacterVehicle._VisionSensor.EnemyView != null)
+            VisionSensorCivil visionSensorCivil = _AICharacterVehicle._VisionSensor as VisionSensorCivil;
+            if (visionSensorCivil !=null && visionSensorCivil.AccommodationView == null)
             {
-                return TaskStatus.Failure;
+                return TaskStatus.Success;
             }
         }
-        else
-        if (_AICharacterAction != null)
-        {
-            if (_AICharacterAction._VisionSensor.EnemyView != null)
-            {
-                return TaskStatus.Failure;
-            }
-        }
-
+         
 
 
         return TaskStatus.Failure;

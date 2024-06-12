@@ -8,10 +8,10 @@ public class VisionSensorCivil : VisionSensor
     public DataViewBase ResourcesVision = new DataViewBase();
 
     [Header("Accommodation View")]
-    public Health AccommodationView;
+    public Item AccommodationView;
 
     [Header("Resource View")]
-    public Health ResourceView;
+    public Item ResourceView;
 
     private void Start()
     {
@@ -41,7 +41,8 @@ public class VisionSensorCivil : VisionSensor
         AccommodationView = null;
         ResourceView = null;    
         MainVision.InSight = false;
-
+        float min_dist = 100000000f;
+        float min_dist_item = 100000000f;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -55,27 +56,32 @@ public class VisionSensorCivil : VisionSensor
                 MainVision.IsInSight(health.AimOffset)  
                 )
             {
-                if (health.typeAgent == TypeAgent.Resources) {
-                    ResourceView = health;
-                }
-                else if(health.typeAgent == TypeAgent.Accommodation)
-                {
-                    AccommodationView = health;
-                }
-                else    
-                {
-                    if (!IsAllies(health))
-                    {
-                        EnemyView = health;
-                    }
-                    else 
-                    {
-                        AlliedView = health;
-                    }
-                }
-                
+
+                ExtractViewEnemy(ref min_dist, health);
+
+            }
+
+
+            Item ScanItem = targetsInViewRadius[i].GetComponent<Item>();
+
+            if (ScanItem != null && MainVision.IsInSight(ScanItem.transform))
+            {
+                ExtractViewItem(ref min_dist_item, ScanItem);
             }
         }   
+    }
+    public void ExtractViewItem(ref float min_dist, Item ScanItem)
+    {
+        float dist = (transform.position - ScanItem.transform.position).magnitude;
+        if (min_dist > dist)
+        {
+
+            if (ScanItem.type == TypeItem.Cave)
+            {
+                AccommodationView = ScanItem;
+            }
+            min_dist = dist;
+        }
     }
     public override void UpdateScand()
     {

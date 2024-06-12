@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AICharacterVehicleLandSmart : AICharacterVehicleLand
 {
+    public override void LoadComponent()
+    {
+        base.LoadComponent();
+
+    }
     /*#region move
     public override void MoveToPosition(Vector3 position)
     {
