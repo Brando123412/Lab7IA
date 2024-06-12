@@ -20,9 +20,9 @@ public class ActionDistanceColliderAttack : ActionRange
         }
         if (_AICharacterVehicle != null)
         {
-            if (_AICharacterVehicle._VisionSensor is VisionSensorAttack)
+            if (_AICharacterVehicle._VisionSensor is VisionSensorZombie)
             {
-                if (((VisionSensorAttack)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
+                if (((VisionSensorZombie)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
                     return TaskStatus.Success;
             }
         }

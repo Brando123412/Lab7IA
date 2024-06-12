@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
-public class VisionSensorFire : VisionSensor
+public class VisionSensorGuard : VisionSensor
 {
     [Header("Vision Fire")]
     public DataViewBase FireVision = new DataViewBase();
+
     private void Start()
     {
         LoadComponent();
@@ -32,7 +35,7 @@ public class VisionSensorFire : VisionSensor
         {
             index++;
             index = index % arrayRate.Length;
-            base.Scan();
+            this.Scan();
             Framerate = 0;
         }
         Framerate += Time.deltaTime;
@@ -44,6 +47,34 @@ public class VisionSensorFire : VisionSensor
         }
         else
             FireVision.InSight = false;
+    }
+    public override void Scan()
+    {
+
+        EnemyView = null;
+
+        MainVision.InSight = false;
+
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        {
+            Health health = targetsInViewRadius[i].GetComponent<Health>();
+
+            if (health != null &&
+                IsNotIsThis(health.gameObject) &&
+                !health.IsDead &&
+                health.IfCanView &&
+                MainVision.IsInSight(health.AimOffset)
+                )
+            {
+
+                if (!IsAllies(health))
+                {
+                    EnemyView = health;
+                }
+            }
+        }
     }
     private void OnDrawGizmos()
     {

@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
-public class VisionSensorFireAttack : VisionSensor
+public class VisionSensorSoldier : VisionSensor
 {
     [Header("Vision Attack")]
     public DataViewBase AttackVision = new DataViewBase();
     [Header("Vision Fire")]
     public DataViewBase FireVision = new DataViewBase();
     // Start is called before the first frame update
+
+
     private void Start()
     {
         LoadComponent();
@@ -17,7 +21,7 @@ public class VisionSensorFireAttack : VisionSensor
     {
         FireVision.Owner = GetComponent<Health>();
         AttackVision.Owner = FireVision.Owner;
-        
+
         base.LoadComponent();
     }
 
@@ -54,14 +58,14 @@ public class VisionSensorFireAttack : VisionSensor
             AttackVision.InSight = false;
             FireVision.InSight = false;
         }
-            
+
     }
     public override void Scan()
     {
 
         EnemyView = null;
         AlliedView = null;
-        
+
         MainVision.InSight = false;
 
 
@@ -78,19 +82,15 @@ public class VisionSensorFireAttack : VisionSensor
                 MainVision.IsInSight(health.AimOffset)
                 )
             {
-                 
-                if (health.typeAgent == TypeAgent.Zombie)
-                {
-                    if (!IsAllies(health))
-                    {
-                        EnemyView = health;
-                    }
-                    else
-                    {
-                        AlliedView = health;
-                    }
-                }
-
+                
+                 if (!IsAllies(health))
+                 {
+                     EnemyView = health;
+                 }
+                 else
+                 {
+                    AlliedView = health;
+                 }
             }
         }
     }

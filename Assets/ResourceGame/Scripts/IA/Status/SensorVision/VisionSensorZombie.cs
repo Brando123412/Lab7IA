@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
-public class VisionSensorAttack : VisionSensor
+public class VisionSensorZombie : VisionSensor
 {
     [Header("Vision Attack")]
     public DataViewBase AttackVision = new DataViewBase();
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,13 +31,42 @@ public class VisionSensorAttack : VisionSensor
         base.CreateMesh();
         AttackVision.CreateMesh();
     }
+
+    public override void Scan()
+    {
+
+        EnemyView = null;
+        MainVision.InSight = false;
+
+
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        {
+            Health health = targetsInViewRadius[i].GetComponent<Health>();
+
+            if (health != null &&
+                IsNotIsThis(health.gameObject) &&
+                !health.IsDead &&
+                health.IfCanView &&
+                MainVision.IsInSight(health.AimOffset)
+                )
+            {
+
+                if (!IsAllies(health))
+                {
+                    EnemyView = health;
+                }
+            }
+        }
+    }
     public override void UpdateScand()
     {
         if (Framerate > arrayRate[index])
         {
             index++;
             index = index % arrayRate.Length;
-            base.Scan();
+            this.Scan();
             Framerate = 0;
         }
         Framerate += Time.deltaTime;

@@ -21,9 +21,9 @@ public class ActionDistanceColliderFire : ActionRange
         }
         if (_AICharacterVehicle != null)
         {
-            if (_AICharacterVehicle._VisionSensor is VisionSensorFire)
+            if (_AICharacterVehicle._VisionSensor is VisionSensorGuard)
             {
-                if (!((VisionSensorFire)_AICharacterVehicle._VisionSensor).FireVision.InSight)
+                if (!((VisionSensorGuard)_AICharacterVehicle._VisionSensor).FireVision.InSight)
                 {
                     return TaskStatus.Success;
                 }

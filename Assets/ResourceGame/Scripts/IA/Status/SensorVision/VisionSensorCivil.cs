@@ -6,11 +6,13 @@ public class VisionSensorCivil : VisionSensor
 {
     [Header("Vision Fire")]
     public DataViewBase FireVision = new DataViewBase();
+
     [Header("Accommodation View")]
     public Health AccommodationView;
 
     [Header("Resource View")]
     public Health ResourceView;
+
     private void Start()
     {
         LoadComponent();
@@ -31,51 +33,47 @@ public class VisionSensorCivil : VisionSensor
         base.CreateMesh();
         FireVision.CreateMesh();
     }
-    public override void Scan()
+    public override void Scan()            
     {
 
-        EnemyView = null;
+        EnemyView=null;
         AlliedView = null;
-        ResourceView = null;
-        AccommodationView = null;
         MainVision.InSight = false;
-
 
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Health health = targetsInViewRadius[i].GetComponent<Health>();
+             Health health= targetsInViewRadius[i].GetComponent<Health>();
 
-            if (health != null &&
+            if( health!=null &&
                 IsNotIsThis(health.gameObject) &&
                 !health.IsDead &&
                 health.IfCanView &&
-                MainVision.IsInSight(health.AimOffset)
+                MainVision.IsInSight(health.AimOffset)  
                 )
             {
-                if (health.typeAgent == TypeAgent.Resources)
-                {
+                if (health.typeAgent == TypeAgent.Resources) {
                     ResourceView = health;
                 }
-                else if (health.typeAgent == TypeAgent.Accommodation)
+                else if(health.typeAgent == TypeAgent.Accommodation)
                 {
                     AccommodationView = health;
                 }
-                else
+                else    
                 {
                     if (!IsAllies(health))
                     {
                         EnemyView = health;
                     }
-                    else
+                    else 
                     {
                         AlliedView = health;
                     }
                 }
-
+                
             }
-        }
+        }   
     }
     public override void UpdateScand()
     {
@@ -83,7 +81,7 @@ public class VisionSensorCivil : VisionSensor
         {
             index++;
             index = index % arrayRate.Length;
-            base.Scan();
+            this.Scan();
             Framerate = 0;
         }
         Framerate += Time.deltaTime;

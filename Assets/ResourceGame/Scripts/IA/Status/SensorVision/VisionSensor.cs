@@ -182,10 +182,10 @@ public class VisionSensor : MonoBehaviour
     [Space(20)]
     [Header("Enemy View")]
     public Health EnemyView;
+
     [Header("Allied View")]
     public Health AlliedView;
-   
-   
+
 
     [Header("Onwer Health")]
     public Health health;
@@ -239,12 +239,9 @@ public class VisionSensor : MonoBehaviour
     public virtual void Scan()
     {
 
-        EnemyView=null;
+        /*EnemyView=null;
         AlliedView = null;
-        ResourceView = null;
-        AccommodationView = null;
         MainVision.InSight = false;
-       
 
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
 
@@ -266,7 +263,7 @@ public class VisionSensor : MonoBehaviour
                 {
                     AccommodationView = health;
                 }
-                else
+                else    
                 {
                     if (!IsAllies(health))
                     {
@@ -279,7 +276,7 @@ public class VisionSensor : MonoBehaviour
                 }
                 
             }
-        }
+        }   */
     }
 
     public void CreateMesh()
