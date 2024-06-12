@@ -24,7 +24,7 @@ public class ActionViewCave : ActionView
         {
             if (_AICharacterVehicle._VisionSensor.EnemyView != null)
             {
-                return TaskStatus.Success;
+                return TaskStatus.Failure;
             }
         }
         else
@@ -32,9 +32,11 @@ public class ActionViewCave : ActionView
         {
             if (_AICharacterAction._VisionSensor.EnemyView != null)
             {
-                return TaskStatus.Success;
+                return TaskStatus.Failure;
             }
         }
+
+
 
         return TaskStatus.Failure;
     }
