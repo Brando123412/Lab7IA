@@ -45,9 +45,7 @@ public class AICharacterVehicle : AICharacterControl
     }
     public virtual void MoveToEvadeEnemy()
     {
-
     }
-
     public virtual void Wander()
     {
 
@@ -55,4 +53,5 @@ public class AICharacterVehicle : AICharacterControl
     public virtual void MoveToAllied()
     { 
     }
+    public virtual void MoveToResource() { }
 }

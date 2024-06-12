@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class HealthPlayerA : Health
-{
 
+public class HealthGuard : Health
+{
     private void Start()
     {
         this.LoadComponent();

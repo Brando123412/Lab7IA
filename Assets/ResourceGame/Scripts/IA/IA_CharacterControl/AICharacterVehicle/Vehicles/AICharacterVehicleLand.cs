@@ -40,12 +40,18 @@ public class AICharacterVehicleLand : AICharacterVehicle
         agent.SetDestination(_VisionSensor.EnemyView.transform.position);
 
     }
+    public override void MoveToResource()
+    {
+        VisionSensorCivil visionSensorCivil = _VisionSensor as VisionSensorCivil;
+        this.MoveToPosition(visionSensorCivil.ResourceView.transform.position);
+    }
     public override void MoveToPosition(Vector3 position)
     {
         NavMeshHit hit;
         if (NavMesh.SamplePosition(position, out hit, agent.radius, NavMesh.AllAreas))
             agent.SetDestination(position);
     }
+
     public override void MoveToEvadeEnemy()
     {
         if (_VisionSensor.EnemyView == null) return;

@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class HealthPlayerB : Health
-{
 
+public class AICharacterActionLandGuard : AICharacterActionLand
+{
     private void Start()
     {
         this.LoadComponent();
@@ -11,5 +11,9 @@ public class HealthPlayerB : Health
     public override void LoadComponent()
     {
         base.LoadComponent();
+    }
+    public virtual void Collect()
+    {
+
     }
 }

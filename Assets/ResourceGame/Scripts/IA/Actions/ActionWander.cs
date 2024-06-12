@@ -18,7 +18,6 @@ public class ActionWander : ActionNodeVehicle
             return TaskStatus.Failure;
         }
         _AICharacterVehicle.Wander();
-        //SwitchMoveToAllied();
         return TaskStatus.Success;
     }
 

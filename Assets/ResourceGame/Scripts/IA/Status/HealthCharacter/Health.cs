@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum TypeAgent { Soldier, Zombie, Civil, Resources, Accommodation}
+public enum TypeAgent { Soldier, Zombie, Civil,Guard, Resources, Accommodation}
 public class Health : MonoBehaviour
 {
     public int health=0;
