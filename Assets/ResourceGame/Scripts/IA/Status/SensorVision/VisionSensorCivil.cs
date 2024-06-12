@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class VisionSensorCivil : VisionSensor
 {
-    [Header("Vision Fire")]
-    public DataViewBase FireVision = new DataViewBase();
+    [Header("Vision Resources")]
+    public DataViewBase ResourcesVision = new DataViewBase();
 
     [Header("Accommodation View")]
     public Health AccommodationView;
@@ -20,7 +20,7 @@ public class VisionSensorCivil : VisionSensor
     public override void LoadComponent()
     {
 
-        FireVision.Owner = MainVision.Owner;
+        ResourcesVision.Owner = MainVision.Owner;
         base.LoadComponent();
     }
 
@@ -31,13 +31,15 @@ public class VisionSensorCivil : VisionSensor
     private void OnValidate()
     {
         base.CreateMesh();
-        FireVision.CreateMesh();
+        ResourcesVision.CreateMesh();
     }
     public override void Scan()            
     {
 
         EnemyView=null;
         AlliedView = null;
+        AccommodationView = null;
+        ResourceView = null;    
         MainVision.InSight = false;
 
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
@@ -87,16 +89,16 @@ public class VisionSensorCivil : VisionSensor
         Framerate += Time.deltaTime;
 
 
-        if (EnemyView != null)
+        if (ResourceView != null)
         {
-            FireVision.IsInSight(EnemyView.AimOffset);
+            ResourcesVision.IsInSight(ResourceView.AimOffset);
         }
         else
-            FireVision.InSight = false;
+            ResourcesVision.InSight = false;
     }
     private void OnDrawGizmos()
     {
-        FireVision.OnDrawGizmos();
+        ResourcesVision.OnDrawGizmos();
         base.DrawGizmos();
     }
 }
