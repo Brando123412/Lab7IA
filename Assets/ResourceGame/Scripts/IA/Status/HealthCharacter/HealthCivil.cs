@@ -20,4 +20,10 @@ public class HealthCivil : Health
     {
         IfCanView = true;
     }
+    public override void DoDamage(int dmg, Health hit)
+    {
+        
+        base.DoDamage(dmg, hit);
+        Debug.Log($"Civel Recibi danno de : {hit.gameObject.name}" + " damage: "+dmg);
+    }
 }

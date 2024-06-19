@@ -26,8 +26,9 @@ public class ActionAttack : ActionNodeActions
                 Debug.Log("Attack Soldier");
                 break;
             case TypeAgent.Zombie:
-                Debug.Log("Attack Zombie");
+                ((AICharacterActionLandZombie)_AICharacterAction).Attack();
                 break;
+
             default:
                 break;
         }

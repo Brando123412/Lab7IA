@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HealthZombie : HealthCombat
+public class HealthCombat : Health
 {
-    private void Start()
-    {
-        this.LoadComponent();
-    }
+
     public override void LoadComponent()
     {
         base.LoadComponent();
     }
     public override void DoDamage(int dmg, Health hit)
     {
-
         base.DoDamage(dmg, hit);
-        Debug.Log($"Zombie Recibi danno de : {hit.gameObject.name}");
+        if (IsDead)
+        {
+            hit._bonus.AddBonus(_bonus);
+            hit._bonus.Point = 0;
+        }
+            
     }
+    
 }

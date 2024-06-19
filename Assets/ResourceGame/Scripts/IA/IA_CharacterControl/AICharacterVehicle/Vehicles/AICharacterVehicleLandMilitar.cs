@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class AICharacterVehicleLandMilitar : AICharacterVehicleLandSmart
 {
-    /*public override void Evade()
+    public UnityEngine.Color WanderPosition;
+    private void Start()
     {
-
+        this.LoadComponent();
     }
-    public void StrategyMove()
+    public override void LoadComponent()
     {
-       
-    }    */
+        base.LoadComponent();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!IsDrawGizmos) return;
+
+        Gizmos.color = WanderPosition;
+        Gizmos.DrawWireSphere(pointWander, 1f);
+    }
 }

@@ -16,7 +16,31 @@ public class ActionEvade : ActionNodeVehicle
         {
             return TaskStatus.Failure;
         }
-        _AICharacterVehicle.MoveToEvadeEnemy();
+
+        SwitchCharacter();
         return TaskStatus.Success;
+    }
+    void SwitchCharacter()
+    {
+
+        switch (_TypeUnity)
+        {
+            case TypeAgent.Soldier:
+                break;
+            case TypeAgent.Zombie:
+                break;
+            case TypeAgent.Civil:
+                ((AICharacterVehicleLandCivil)_AICharacterVehicle).MoveToEvadeEnemy();
+                break;
+            case TypeAgent.Guard:
+                break;
+            case TypeAgent.Resources:
+                break;
+            case TypeAgent.Accommodation:
+                break;
+            default:
+                break;
+        }
+
     }
 }

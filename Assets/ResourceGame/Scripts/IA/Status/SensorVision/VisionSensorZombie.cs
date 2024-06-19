@@ -38,7 +38,7 @@ public class VisionSensorZombie : VisionSensor
         EnemyView = null;
         MainVision.InSight = false;
 
-
+        float min_dist = 10000000;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -53,13 +53,11 @@ public class VisionSensorZombie : VisionSensor
                 )
             {
 
-                if (!IsAllies(health))
-                {
-                    EnemyView = health;
-                }
+                base.ExtractViewEnemy(ref min_dist, health);
             }
         }
     }
+     
     public override void UpdateScand()
     {
         if (Framerate > arrayRate[index])

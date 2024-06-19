@@ -15,7 +15,14 @@ public class AICharacterVehicleLandZombie : AICharacterVehicleLand
         base.LoadComponent();
 
     }
+    public void UpgradeDamage()
+    {
+        if (health.IsDead) return;
+        float b = health._bonus.Percent();
+        if (b > 0.5f)
+            agent.speed *= 2;
 
+    }
     private void OnDrawGizmos()
     {
         if (!IsDrawGizmos) return;

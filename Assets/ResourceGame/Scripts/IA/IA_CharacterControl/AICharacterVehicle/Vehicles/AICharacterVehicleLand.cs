@@ -8,6 +8,7 @@ public class AICharacterVehicleLand : AICharacterVehicle
     protected NavMeshAgent agent;
     public float rangeWander = 10.0f;
     public Vector3 pointWander = Vector3.zero;
+    public Vector3 positionEvade = Vector3.zero;
     public override void LoadComponent()
     {
         base.LoadComponent();
@@ -22,8 +23,7 @@ public class AICharacterVehicleLand : AICharacterVehicle
     }
     public override void LookToPosition(Vector3 position)
     {
-        if (_VisionSensor.EnemyView == null) return;
-        Vector3 dir = (_VisionSensor.EnemyView.transform.position - position).normalized;
+        Vector3 dir = (position - transform.position ).normalized;
         transform.rotation = Quaternion.LookRotation(dir);
     }
     public override void MoveToEnemy()
@@ -48,15 +48,19 @@ public class AICharacterVehicleLand : AICharacterVehicle
     public override void MoveToPosition(Vector3 position)
     {
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(position, out hit, agent.radius, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(position, out hit, 50, NavMesh.AllAreas))
             agent.SetDestination(position);
     }
 
     public override void MoveToEvadeEnemy()
     {
+         
         if (_VisionSensor.EnemyView == null) return;
+      
         Vector3 dir = (transform.position - _VisionSensor.EnemyView.transform.position).normalized;
-        this.MoveToPosition(transform.position + dir * agent.radius);
+        positionEvade = transform.position + dir * 10;
+        LookToPosition(positionEvade);
+        this.MoveToPosition(positionEvade);
     }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
@@ -98,4 +102,5 @@ public class AICharacterVehicleLand : AICharacterVehicle
             Framerate += Time.deltaTime;
         }
     }
+
 }

@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine.UIElements;
+
+[TaskCategory("IA SC/ Node Range / Eye")]
 public class ActionDistanceColliderAttack : ActionRange
 {
     public override void OnStart()
@@ -10,7 +12,7 @@ public class ActionDistanceColliderAttack : ActionRange
     }
     public override TaskStatus OnUpdate()
     {
-        /*if (_AICharacterVehicle != null)
+        if (_AICharacterVehicle != null)
         {
             if (_AICharacterVehicle.health.IsDead)
             {
@@ -24,8 +26,10 @@ public class ActionDistanceColliderAttack : ActionRange
                 if (((VisionSensorZombie)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
                     return TaskStatus.Success;
             }
-        }                        */
+        }                        
         return TaskStatus.Success; 
+
+
     }    /*
     TaskStatus SwitchUnity()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSoider : Health
+public class HealthSoldier : HealthCombat
 {
     private void Start()
     {
@@ -11,5 +11,9 @@ public class HealthSoider : Health
     public override void LoadComponent()
     {
         base.LoadComponent();
+    }
+    public override void DoDamage(int dmg, Health hit)
+    {
+        base.DoDamage(dmg, hit);
     }
 }

@@ -35,7 +35,16 @@ public class ActionNode : Action
             _TypeUnity = this._AICharacterAction.health.typeAgent;
         }
 
-        if (_AICharacterVehicle != null && _AICharacterVehicle._VisionSensor!=null)
+        if (_AICharacterVehicle != null && _AICharacterVehicle.health!=null)
+        {
+            MyHealth = _AICharacterVehicle.health;
+        }
+        else if (_AICharacterAction != null && _AICharacterAction.health != null)
+        {
+            MyHealth = _AICharacterAction.health;
+        }
+
+        if (_AICharacterVehicle != null && _AICharacterVehicle._VisionSensor != null)
         {
             _VisionSensor = _AICharacterVehicle._VisionSensor;
         }
