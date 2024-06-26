@@ -17,11 +17,10 @@ public class ActionViewEnemy : ActionView
                 return TaskStatus.Failure;
             }
         }
+
         if (_VisionSensor != null && _VisionSensor.EnemyView != null)
         {
-             
-                return TaskStatus.Success;
-         
+            return TaskStatus.Success;
         }
         return TaskStatus.Failure;
     }

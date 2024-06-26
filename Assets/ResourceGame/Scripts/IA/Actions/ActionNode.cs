@@ -16,16 +16,7 @@ public class ActionNode : Action
     public override void OnStart()
     {
         _AICharacterVehicle = GetComponent<AICharacterVehicle>();
-        /*if (_AICharacterVehicle == null)
-        {
-            Debug.LogWarning("Not load component");
-        }                                  */
         _AICharacterAction = GetComponent<AICharacterAction>();
-        /*if (_AICharacterAction == null)
-        {
-            Debug.LogWarning("Not load component");
-        }        */
-
         if (_AICharacterVehicle != null)
         {
             _TypeUnity = this._AICharacterVehicle.health.typeAgent;

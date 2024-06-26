@@ -24,6 +24,6 @@ public class HealthCivil : Health
     {
         
         base.DoDamage(dmg, hit);
-        Debug.Log($"Civel Recibi danno de : {hit.gameObject.name}" + " damage: "+dmg);
+        Debug.Log($"Civil Recibi danno de : {hit.gameObject.name}" + " damage: "+dmg);
     }
 }
