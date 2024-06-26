@@ -13,16 +13,16 @@ public class ItemCave : Item
     {
         base.LoadComponent();
     }
-
     public void Add(Health npc)
     {
-        if (npc.IsDead) return;
+        if (npc.IsDead || npc_Civil.Contains(npc)) return;
 
         ((HealthCivil) npc).Hide();
         npc_Civil.Add(npc);
     }
     public void Remove(Health npc)
     {
+        if(!npc_Civil.Contains(npc)) return;
         ((HealthCivil)npc).Show();
         npc_Civil.Remove(npc);
     }

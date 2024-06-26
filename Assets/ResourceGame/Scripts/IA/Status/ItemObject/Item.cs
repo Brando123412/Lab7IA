@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
 
     public virtual void LoadComponent()
     {
-
+        AimOffset = transform;
     }
 
 }

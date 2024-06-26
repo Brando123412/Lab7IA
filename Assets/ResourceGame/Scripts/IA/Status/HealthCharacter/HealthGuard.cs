@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HealthCombat : Health
+public class HealthGuard : Health
 {
+    private void Start()
+    {
+        this.LoadComponent();
+    }
     public override void LoadComponent()
     {
         base.LoadComponent();
@@ -12,10 +15,5 @@ public class HealthCombat : Health
     public override void DoDamage(int dmg, Health hit)
     {
         base.DoDamage(dmg, hit);
-        if (IsDead)
-        {
-            hit._bonus.AddBonus(_bonus);
-            hit._bonus.Point = 0;
-        }
     }
 }
