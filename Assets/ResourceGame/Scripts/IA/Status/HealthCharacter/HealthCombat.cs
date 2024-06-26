@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthCombat : Health
+public class HealthCombat : HealthHuman
 {
     public override void LoadComponent()
     {

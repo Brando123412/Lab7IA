@@ -43,7 +43,7 @@ public class VisionSensorZombie : VisionSensor
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Health health = targetsInViewRadius[i].GetComponent<Health>();
+            HealthHuman health = targetsInViewRadius[i].GetComponent<HealthHuman>();
 
             if (health != null &&
                 IsNotIsThis(health.gameObject) &&

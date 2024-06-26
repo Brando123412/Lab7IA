@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class AICharacterActionLandCivil : AICharacterActionLand
+using BehaviorDesigner;
+public class AICharacterActionLandCivil : IACharacterHumanAction
 {
+    
+    
     private void Start()
     {
         this.LoadComponent();
@@ -11,9 +13,11 @@ public class AICharacterActionLandCivil : AICharacterActionLand
     public override void LoadComponent()
     {
         base.LoadComponent();
+        
     }
     public virtual void Collect()
     {
 
     }
+    
 }

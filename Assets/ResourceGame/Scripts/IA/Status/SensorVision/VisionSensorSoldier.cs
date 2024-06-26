@@ -78,7 +78,7 @@ public class VisionSensorSoldier : VisionSensor
             if (health != null &&
                 IsNotIsThis(health.gameObject) &&
                 !health.IsDead &&
-                health.IfCanView &&
+                //health.IfCanView &&
                 MainVision.IsInSight(health.AimOffset)
                 )
             {

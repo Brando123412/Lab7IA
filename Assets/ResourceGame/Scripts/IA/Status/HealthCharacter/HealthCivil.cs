@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthCivil : Health
+public class HealthCivil : HealthHuman
 {
     [Header("Resources Inventory")]
     public int ResourceBackpack = 0;
@@ -16,14 +16,7 @@ public class HealthCivil : Health
     {
         base.LoadComponent();
     }
-    public void Hide()
-    {
-        IfCanView = false;
-    }
-    public void Show()
-    {
-        IfCanView = true;
-    }
+    
     public override void DoDamage(int dmg, Health hit)
     {
         

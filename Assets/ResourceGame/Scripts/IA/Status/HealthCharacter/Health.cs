@@ -15,8 +15,7 @@ public class Health : MonoBehaviour
 
     public Transform AimOffset;
 
-    public bool IfCanView = true;
-
+    
     public UnityEvent DeadEvent;
     public UnityEvent BonusEvent;
     public bool IsDead { get => health <= 0; }

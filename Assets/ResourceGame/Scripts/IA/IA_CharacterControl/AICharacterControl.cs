@@ -10,6 +10,7 @@ public class AICharacterControl : MonoBehaviour
     public VisionSensor _VisionSensor;
     public Health health;
     public bool IsDrawGizmos = false;
+    
     #region Rate
     protected int index = 0;
     protected float[] arrayRate;
@@ -22,6 +23,7 @@ public class AICharacterControl : MonoBehaviour
     #endregion
     public virtual void LoadComponent()
     {
+        
         health = GetComponent<Health>();
         _VisionSensor = GetComponent<VisionSensor>();
         Framerate = 0;
@@ -32,6 +34,9 @@ public class AICharacterControl : MonoBehaviour
             arrayRate[i] = (float)UnityEngine.Random.Range(randomWaitScandMin, randomWaitScandMax);
         }
     }
+
+
+    
 
 }
 

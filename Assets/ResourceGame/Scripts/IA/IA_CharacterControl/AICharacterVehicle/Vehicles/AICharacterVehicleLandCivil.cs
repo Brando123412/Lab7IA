@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICharacterVehicleLandCivil : AICharacterVehicleLandSmart
+public class AICharacterVehicleLandCivil : IACharacterHumanVehicle
 {
     public UnityEngine.Color WanderPosition;
     private void Start()
@@ -24,6 +24,8 @@ public class AICharacterVehicleLandCivil : AICharacterVehicleLandSmart
     {
         base.MoveToEvadeEnemy();
     }
+     
+     
     private void OnDrawGizmos()
     {
         if (!IsDrawGizmos) return;

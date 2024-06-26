@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICharacterActionLandMilitar : AICharacterActionLand
+public class AICharacterActionLandMilitar : IACharacterHumanAction
 {
     private void Start()
     {

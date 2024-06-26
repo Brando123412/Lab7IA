@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICharacterVehicleLandMilitar : AICharacterVehicleLandSmart
+public class AICharacterVehicleLandMilitar : IACharacterHumanVehicle
 {
     public UnityEngine.Color WanderPosition;
     private void Start()
