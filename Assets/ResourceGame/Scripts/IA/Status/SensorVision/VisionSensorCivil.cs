@@ -56,12 +56,8 @@ public class VisionSensorCivil : VisionSensor
                 MainVision.IsInSight(health.AimOffset)  
                 )
             {
-
                 ExtractViewEnemy(ref min_dist, health);
-
             }
-
-
             Item ScanItem = targetsInViewRadius[i].GetComponent<Item>();
 
             if (ScanItem != null && MainVision.IsInSight(ScanItem.transform))

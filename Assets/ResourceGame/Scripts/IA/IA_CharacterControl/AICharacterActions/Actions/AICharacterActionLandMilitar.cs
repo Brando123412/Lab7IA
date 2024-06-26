@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICharacterActionLandMilitar : MonoBehaviour
+public class AICharacterActionLandMilitar : AICharacterActionLand
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        this.LoadComponent();
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void LoadComponent()
     {
-        
+        base.LoadComponent();
+    }
+    public virtual void Collect()
+    {
+
     }
 }

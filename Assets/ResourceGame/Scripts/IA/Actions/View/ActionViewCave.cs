@@ -28,9 +28,6 @@ public class ActionViewCave : ActionView
                 return TaskStatus.Success;
             }
         }
-         
-
-
         return TaskStatus.Failure;
     }
 }
