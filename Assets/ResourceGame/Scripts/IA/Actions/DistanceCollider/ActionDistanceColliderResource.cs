@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime.Tasks;
 
-public class ActionDistanceColliderResource : MonoBehaviour
+[TaskCategory("IA SC/ Node Range / Eye")]
+public class ActionDistanceColliderResource : ActionView
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnStart()
     {
-        
+        base.OnStart();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override TaskStatus OnUpdate()
     {
-        
+        if (_AICharacterVehicle != null)
+        {
+            if (_AICharacterVehicle.health.IsDead)
+            {
+                return TaskStatus.Failure;
+            }
+        }
+
+        if (_AICharacterVehicle != null)
+        {
+            if (_AICharacterVehicle._VisionSensor is VisionSensorCivil)
+            {
+                if (((VisionSensorCivil)_AICharacterVehicle._VisionSensor).ResourcesVision.InSight)
+                {
+                    return TaskStatus.Success;
+                }
+            }
+        }
+        return TaskStatus.Success;
     }
 }

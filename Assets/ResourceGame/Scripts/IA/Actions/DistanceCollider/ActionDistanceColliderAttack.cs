@@ -38,28 +38,5 @@ public class ActionDistanceColliderAttack : ActionRange
             }
         }                        
         return TaskStatus.Success; 
-
-
-    }    /*
-    TaskStatus SwitchUnity()
-    {
-        switch (UnitSC)
-        {
-
-            case UnitSC.Zergling:
-                float distance = (trasnform.position - _AICharacterAction.IAEye.ViewEnemy.transform.position).magnitud;
-                if (distance < distanceOneLand)
-                {
-                    return TaskStatus.Success;
-                }
-                return TaskStatus.Failure;
-                break;
-
-            case UnitSC.None:
-                break;
-            default:
-                break;
-        }
-        return TaskStatus.Failure;
-    }         */
+    } 
 }

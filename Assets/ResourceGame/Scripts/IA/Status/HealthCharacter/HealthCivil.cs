@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class HealthCivil : Health
 {
+    [Header("Resources Inventory")]
+    public int ResourceBackpack = 0;
+    public int maxResourceBackpack = 50;
     private void Start()
     {
         this.LoadComponent();
+        ResourceBackpack = 0;
     }
     public override void LoadComponent()
     {

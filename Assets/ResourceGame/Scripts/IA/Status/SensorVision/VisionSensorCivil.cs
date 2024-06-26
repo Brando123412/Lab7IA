@@ -35,25 +35,24 @@ public class VisionSensorCivil : VisionSensor
     }
     public override void Scan()            
     {
-
         EnemyView=null;
         AlliedView = null;
         AccommodationView = null;
         ResourceView = null;    
-        MainVision.InSight = false;
+        ResourcesVision.InSight = false;
         float min_dist = 100000000f;
         float min_dist_item = 100000000f;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
-
-        for (int i = 0; i < targetsInViewRadius.Length; i++)
+          
+        for (int i = 0; i < targetsInViewRadius.Length; i++) 
         {
-             Health health= targetsInViewRadius[i].GetComponent<Health>();
+            Health health = targetsInViewRadius[i].GetComponent<Health>();
 
-            if( health!=null &&
+            if (health != null &&
                 IsNotIsThis(health.gameObject) &&
                 !health.IsDead &&
                 health.IfCanView &&
-                MainVision.IsInSight(health.AimOffset)  
+                MainVision.IsInSight(health.AimOffset)
                 )
             {
                 ExtractViewEnemy(ref min_dist, health);
@@ -64,17 +63,30 @@ public class VisionSensorCivil : VisionSensor
             {
                 ExtractViewItem(ref min_dist_item, ScanItem);
             }
-        }   
+        }
     }
     public void ExtractViewItem(ref float min_dist, Item ScanItem)
     {
         float dist = (transform.position - ScanItem.transform.position).magnitude;
         if (min_dist > dist)
         {
-
-            if (ScanItem.type == TypeItem.Cave)
+            switch (ScanItem.type)
             {
-                AccommodationView = ScanItem;
+                case TypeItem.Cave:
+                    AccommodationView = ScanItem;
+                    break;
+                case TypeItem.Resource1:
+                    ResourceView = ScanItem;
+                    break;
+                case TypeItem.Resource2:
+                    ResourceView = ScanItem;
+                    break;
+                case TypeItem.Resource3:
+                    ResourceView = ScanItem;
+                    break;
+                default:
+                    Debug.Log("Recurso no encontrado");
+                    break;
             }
             min_dist = dist;
         }

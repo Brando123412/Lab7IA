@@ -241,44 +241,6 @@ public class VisionSensor : MonoBehaviour
     public virtual void Scan()
     {
 
-        /*EnemyView=null;
-        AlliedView = null;
-        MainVision.InSight = false;
-
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
-
-        for (int i = 0; i < targetsInViewRadius.Length; i++)
-        {
-             Health health= targetsInViewRadius[i].GetComponent<Health>();
-
-            if( health!=null &&
-                IsNotIsThis(health.gameObject) &&
-                !health.IsDead &&
-                health.IfCanView &&
-                MainVision.IsInSight(health.AimOffset)  
-                )
-            {
-                if (health.typeAgent == TypeAgent.Resources) {
-                    ResourceView = health;
-                }
-                else if(health.typeAgent == TypeAgent.Accommodation)
-                {
-                    AccommodationView = health;
-                }
-                else    
-                {
-                    if (!IsAllies(health))
-                    {
-                        EnemyView = health;
-                    }
-                    else 
-                    {
-                        AlliedView = health;
-                    }
-                }
-                
-            }
-        }   */
     }
     public void ExtractViewEnemy(ref float min_dist, Health _health)
     {
@@ -288,7 +250,6 @@ public class VisionSensor : MonoBehaviour
             if (min_dist > dist)
             {
                 EnemyView = _health;
-
                 min_dist = dist;
             }
 

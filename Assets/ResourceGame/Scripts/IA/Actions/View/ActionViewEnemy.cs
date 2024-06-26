@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using BehaviorDesigner.Runtime.Tasks;
+
 [TaskCategory("IA SC/ Node View")]
 public class ActionViewEnemy : ActionView
 {
