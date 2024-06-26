@@ -21,16 +21,4 @@ public class ActionFollowCave : ActionNodeVehicle
         
         return TaskStatus.Success;
     }
-    /*void SwitchMoveToAllied()
-    {
-        switch (_TypeUnity)
-        {
-            case TypeAgent.Soldier:
-                break;
-            case TypeAgent.Zombie:
-                break;
-            default:
-                break;
-        }
-    }   */
 }

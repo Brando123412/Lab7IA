@@ -29,12 +29,11 @@ public class ItemResource : Item
     {
         if (collector.ResourceBackpack + weightResource > collector.maxResourceBackpack)
         {
-            Debug.Log("Limite Excedido");
+            //Crear codigo para que ignore el objeto
             Destroy(this.gameObject);
         }
         else
         {
-            Debug.Log("Sumado");
             collector.ResourceBackpack += weightResource;
             Destroy(this.gameObject);
         }

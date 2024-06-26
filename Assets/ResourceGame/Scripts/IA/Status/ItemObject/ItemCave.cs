@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemCave : Item
 {
-    public List<Health> npc_Civil = new List<Health>();
+    public float hideDuration = 5f;
     private void Start()
     {
         this.LoadComponent();
@@ -13,17 +13,19 @@ public class ItemCave : Item
     {
         base.LoadComponent();
     }
-    public void Add(Health npc)
+    public void SeekCharacter(Health npc)
     {
-        if (npc.IsDead || npc_Civil.Contains(npc)) return;
-
-        ((HealthCivil) npc).Hide();
-        npc_Civil.Add(npc);
+        StartCoroutine(HideForDuration(npc));
     }
-    public void Remove(Health npc)
+
+    private IEnumerator HideForDuration(Health npc)
     {
-        if(!npc_Civil.Contains(npc)) return;
-        ((HealthCivil)npc).Show();
-        npc_Civil.Remove(npc);
+        Debug.Log($"{npc.name} se está escondiendo...");
+        npc.IfCanView = false;
+        //npc.gameObject.SetActive(false);
+        yield return new WaitForSeconds(hideDuration);
+        Debug.Log($"{npc.name} ha salido de su escondite.");
+        npc.IfCanView = true;
+        //npc.gameObject.SetActive(true);
     }
 }

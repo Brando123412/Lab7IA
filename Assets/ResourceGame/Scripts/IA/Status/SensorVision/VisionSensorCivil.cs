@@ -37,8 +37,8 @@ public class VisionSensorCivil : VisionSensor
     {
         EnemyView=null;
         AlliedView = null;
+        ResourceView = null;
         AccommodationView = null;
-        ResourceView = null;    
         ResourcesVision.InSight = false;
         float min_dist = 100000000f;
         float min_dist_item = 100000000f;
@@ -104,9 +104,9 @@ public class VisionSensorCivil : VisionSensor
 
 
         if (ResourceView != null)
-        {
             ResourcesVision.IsInSight(ResourceView.AimOffset);
-        }
+        else if (AccommodationView != null)
+            ResourcesVision.IsInSight(AccommodationView.AimOffset);
         else
             ResourcesVision.InSight = false;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
 [TaskCategory("IA SC/Node Resouces Action")]
-public class ActionCollectResources : ActionNodeActions
+public class ActionSeekCave : ActionNodeActions
 {
     public override void OnStart()
     {
@@ -24,9 +24,8 @@ public class ActionCollectResources : ActionNodeActions
 
                 if (visionSensor.ResourcesVision.InSight)
                 {
-                    ItemResource current = (ItemResource)visionSensor.ResourceView;
-                    HealthCivil civil = (HealthCivil)visionSensor.health;
-                    current.CollectResource(civil);
+                    ItemCave current = (ItemCave)visionSensor.ResourceView;
+                    current.SeekCharacter(visionSensor.health);
                     return TaskStatus.Success;
                 }
             }
