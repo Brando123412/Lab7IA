@@ -13,13 +13,15 @@ public class VisionSensorCivil : VisionSensor
     [Header("Resource View")]
     public Item ResourceView;
 
+    private List<Health> enemiesInSight = new List<Health>(); // Lista de enemigos detectados
+
     private void Start()
     {
         LoadComponent();
     }
+
     public override void LoadComponent()
     {
-
         ResourcesVision.Owner = MainVision.Owner;
         base.LoadComponent();
     }
@@ -28,35 +30,39 @@ public class VisionSensorCivil : VisionSensor
     {
         this.UpdateScand();
     }
+
     private void OnValidate()
     {
         base.CreateMesh();
         ResourcesVision.CreateMesh();
     }
-    public override void Scan()            
+
+    public override void Scan()
     {
-        EnemyView=null;
+        EnemyView = null;
         AlliedView = null;
         ResourceView = null;
         AccommodationView = null;
         ResourcesVision.InSight = false;
+        enemiesInSight.Clear(); // Limpiar la lista de enemigos detectados
+
         float min_dist = 100000000f;
         float min_dist_item = 100000000f;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, MainVision.distance, ScanLayerMask);
-          
-        for (int i = 0; i < targetsInViewRadius.Length; i++) 
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Health health = targetsInViewRadius[i].GetComponent<Health>();
 
             if (health != null &&
                 IsNotIsThis(health.gameObject) &&
                 !health.IsDead &&
-                //health.IfCanView &&
-                MainVision.IsInSight(health.AimOffset)
-                )
+                MainVision.IsInSight(health.AimOffset))
             {
                 ExtractViewEnemy(ref min_dist, health);
+                enemiesInSight.Add(health); // Agregar enemigo a la lista
             }
+
             Item ScanItem = targetsInViewRadius[i].GetComponent<Item>();
 
             if (ScanItem != null && MainVision.IsInSight(ScanItem.transform))
@@ -65,6 +71,7 @@ public class VisionSensorCivil : VisionSensor
             }
         }
     }
+
     public void ExtractViewItem(ref float min_dist, Item ScanItem)
     {
         float dist = (transform.position - ScanItem.transform.position).magnitude;
@@ -91,6 +98,7 @@ public class VisionSensorCivil : VisionSensor
             min_dist = dist;
         }
     }
+
     public override void UpdateScand()
     {
         if (Framerate > arrayRate[index])
@@ -102,7 +110,6 @@ public class VisionSensorCivil : VisionSensor
         }
         Framerate += Time.deltaTime;
 
-
         if (ResourceView != null)
             ResourcesVision.IsInSight(ResourceView.AimOffset);
         else if (AccommodationView != null)
@@ -110,6 +117,26 @@ public class VisionSensorCivil : VisionSensor
         else
             ResourcesVision.InSight = false;
     }
+
+    // Metodo para obtener el enemigo más cercano
+    public Health GetClosestEnemy()
+    {
+        Health closestEnemy = null;
+        float minDistance = float.MaxValue;
+
+        foreach (Health enemy in enemiesInSight)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+
+        return closestEnemy;
+    }
+
     private void OnDrawGizmos()
     {
         ResourcesVision.OnDrawGizmos();

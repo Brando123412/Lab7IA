@@ -9,6 +9,7 @@ public class AICharacterVehicleLand : AICharacterVehicle
     public float rangeWander = 10.0f;
     public Vector3 pointWander = Vector3.zero;
     public Vector3 positionEvade = Vector3.zero;
+
     public override void LoadComponent()
     {
         base.LoadComponent();
@@ -21,47 +22,55 @@ public class AICharacterVehicleLand : AICharacterVehicle
         Vector3 dir = (_VisionSensor.EnemyView.transform.position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(dir);
     }
+
     public override void LookToPosition(Vector3 position)
     {
-        Vector3 dir = (position - transform.position ).normalized;
+        Vector3 dir = (position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(dir);
     }
+
     public override void MoveToEnemy()
     {
         if (_VisionSensor.EnemyView == null) return;
         LookToEnemy();
         agent.SetDestination(_VisionSensor.EnemyView.transform.position);
-
     }
+
     public override void MoveToAllied()
     {
-        if (_VisionSensor.EnemyView == null) return;
-        LookToEnemy();
-        agent.SetDestination(_VisionSensor.EnemyView.transform.position);
-
+        if (_VisionSensor.AlliedView == null) return;
+        LookToPosition(_VisionSensor.AlliedView.transform.position);
+        agent.SetDestination(_VisionSensor.AlliedView.transform.position);
     }
+
     public override void MoveToResource()
     {
         VisionSensorCivil visionSensorCivil = _VisionSensor as VisionSensorCivil;
-        this.MoveToPosition(visionSensorCivil.ResourceView.transform.position);
+        if (visionSensorCivil != null && visionSensorCivil.ResourceView != null)
+        {
+            this.MoveToPosition(visionSensorCivil.ResourceView.transform.position);
+        }
     }
+
     public override void MoveToPosition(Vector3 position)
     {
         NavMeshHit hit;
         if (NavMesh.SamplePosition(position, out hit, 50, NavMesh.AllAreas))
+        {
             agent.SetDestination(position);
+        }
     }
 
     public override void MoveToEvadeEnemy()
     {
-         
         if (_VisionSensor.EnemyView == null) return;
-      
+
         Vector3 dir = (transform.position - _VisionSensor.EnemyView.transform.position).normalized;
         positionEvade = transform.position + dir * 10;
         LookToPosition(positionEvade);
         this.MoveToPosition(positionEvade);
     }
+
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
@@ -77,6 +86,7 @@ public class AICharacterVehicleLand : AICharacterVehicle
         result = Vector3.zero;
         return false;
     }
+
     public override void Wander()
     {
         float distance = (transform.position - pointWander).magnitude;
@@ -102,5 +112,4 @@ public class AICharacterVehicleLand : AICharacterVehicle
             Framerate += Time.deltaTime;
         }
     }
-
 }
