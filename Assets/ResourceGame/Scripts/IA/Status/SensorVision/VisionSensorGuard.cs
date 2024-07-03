@@ -18,6 +18,7 @@ public class VisionSensorGuard : VisionSensor
     {
 
         FireVision.Owner = MainVision.Owner;
+        AttackVision.Owner = MainVision.Owner;
         base.LoadComponent();
     }
 
@@ -29,6 +30,7 @@ public class VisionSensorGuard : VisionSensor
     {
         base.CreateMesh();
         FireVision.CreateMesh();
+        AttackVision.CreateMesh();
     }
     public override void UpdateScand()
     {
@@ -45,9 +47,13 @@ public class VisionSensorGuard : VisionSensor
         if (EnemyView != null)
         {
             FireVision.IsInSight(EnemyView.AimOffset);
+            AttackVision.IsInSight(EnemyView.AimOffset);
         }
-        else
-            FireVision.InSight = false;
+        else {
+            FireVision.InSight = false; 
+            AttackVision.InSight = false;
+        }
+            
     }
     public override void Scan()
     {
@@ -79,6 +85,7 @@ public class VisionSensorGuard : VisionSensor
     private void OnDrawGizmos()
     {
         FireVision.OnDrawGizmos();
+        AttackVision.OnDrawGizmos();
         base.DrawGizmos();
     }
 }

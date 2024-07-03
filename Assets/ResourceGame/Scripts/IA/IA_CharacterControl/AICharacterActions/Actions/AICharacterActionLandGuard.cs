@@ -16,6 +16,7 @@ public class AICharacterActionLandGuard : AICharacterActionCombat
     }
     public override void Attack()
     {
+        Debug.Log("atak");
         if (_VisionSensor != null)
         {
             VisionSensorGuard VSM = ((VisionSensorGuard)_VisionSensor);
@@ -40,7 +41,7 @@ public class AICharacterActionLandGuard : AICharacterActionCombat
         if (_VisionSensor != null)
         {
             VisionSensorGuard VSM = ((VisionSensorGuard)_VisionSensor);
-            if (VSM != null && VSM.EnemyView != null && VSM.AttackVision.InSight)
+            if (VSM != null && VSM.EnemyView != null && VSM.FireVision.InSight)
             {
                 if (Framerate > arrayRate[index])
                 {

@@ -31,6 +31,6 @@ public class ActionDistanceColliderFire : ActionRange
                     return TaskStatus.Success;
             }
         }
-        return TaskStatus.Success;
+        return TaskStatus.Failure;
     }
 }

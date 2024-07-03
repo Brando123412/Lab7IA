@@ -39,8 +39,11 @@ MonoBehaviour:
         Not View Enemy","Instant":true},{"Type":"ActionViewResource","NodeData":{"Offset":"(-221.655914,229.928986)"},"ID":24,"Name":"Action
         View Resource","Instant":true},{"Type":"ActionNotDistanceColliderResource","NodeData":{"Offset":"(-70.15838,140.614624)"},"ID":25,"Name":"Action
         Not Distance Collider Resource","Instant":true},{"Type":"ActionMoveToPositionResource","NodeData":{"Offset":"(46.025177,235.50351)"},"ID":26,"Name":"Action
-        Move To Position Resource","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1196.90979,224.047638)"},"ID":27,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ActionNotViewEnemy","NodeData":{"Offset":"(-76.6670761,131.4815)"},"ID":28,"Name":"Action
-        Not View Enemy","Instant":true},{"Type":"ActionWander","NodeData":{"Offset":"(104.509888,132.114258)"},"ID":29,"Name":"Action
+        Move To Position Resource","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1240.85864,201.486053)"},"ID":27,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ActionNotViewEnemy","NodeData":{"Offset":"(-98.7177,131.538544)"},"ID":28,"Name":"Action
+        Not View Enemy","Instant":true},{"Type":"ActionIsBackpackFull","NodeData":{"Offset":"(4.61529541,231.538422)"},"ID":29,"Name":"Action
+        Is Backpack Full","Instant":true},{"Type":"ActionBackHomePosition","NodeData":{"Offset":"(124.068848,119.290421)"},"ID":30,"Name":"Action
+        Back Home Position","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1623.833,202.252762)"},"ID":31,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ActionNotViewEnemy","NodeData":{"Offset":"(-76.6670761,131.4815)"},"ID":32,"Name":"Action
+        Not View Enemy","Instant":true},{"Type":"ActionWander","NodeData":{"Offset":"(104.509888,132.114258)"},"ID":33,"Name":"Action
         Wander","Instant":true}]}]}]}}'
       fieldSerializationData:
         typeName: []

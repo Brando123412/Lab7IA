@@ -5,6 +5,7 @@ using UnityEngine;
 public class AICharacterVehicleLandCivil : IACharacterHumanVehicle
 {
     public UnityEngine.Color WanderPosition;
+    public Vector3 posOfHome;
     private void Start()
     {
         this.LoadComponent();
@@ -35,5 +36,9 @@ public class AICharacterVehicleLandCivil : IACharacterHumanVehicle
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(positionEvade, 1f);
+    }
+    public void BackToPatrolZone()
+    {
+        MoveToPosition(posOfHome);
     }
 }
