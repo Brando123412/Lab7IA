@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICharacterActionCombat : AICharacterActionLand
+public class AICharacterActionCombat : IACharacterHumanAction
 {
 
     public override void LoadComponent()
@@ -12,5 +12,9 @@ public class AICharacterActionCombat : AICharacterActionLand
     public virtual void Attack()
     {
        
+    }
+    public virtual void Shoot()
+    {
+
     }
 }

@@ -23,7 +23,7 @@ public class ActionAttack : ActionNodeActions
         switch (_TypeUnity)
         {
             case TypeAgent.Soldier:
-                Debug.Log("Attack Soldier");
+                ((AICharacterActionLandMilitar)_AICharacterAction).Attack();
                 break;
             case TypeAgent.Zombie:
                 ((AICharacterActionLandZombie)_AICharacterAction).Attack();

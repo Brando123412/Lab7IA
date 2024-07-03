@@ -24,9 +24,9 @@ MonoBehaviour:
         View Enemy","Instant":true},{"Type":"ActionNotDistanceColliderAttack","NodeData":{"Offset":"(2.50250626,123.227119)"},"ID":5,"Name":"Action
         Not Distance Collider Attack","Instant":true,"SingledistanceOneLand":0},{"Type":"ActionFollowEnemy","NodeData":{"Offset":"(191.559021,122.904205)"},"ID":6,"Name":"Action
         Follow Enemy","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-14.66515,142.847214)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ActionViewEnemy","NodeData":{"Offset":"(-178.907257,109.999992)"},"ID":8,"Name":"Action
-        View Enemy","Instant":true},{"Type":"ActionDistanceColliderAttack","NodeData":{"Offset":"(2.2265625,118.215446)"},"ID":9,"Name":"Action
+        View Enemy","Instant":true},{"Type":"ActionDistanceColliderAttack","NodeData":{"Offset":"(2.2265625,108.011368)"},"ID":9,"Name":"Action
         Distance Collider Attack","Instant":true,"SingledistanceOneLand":0},{"Type":"ActionAttack","NodeData":{"Offset":"(168.331741,109.362579)"},"ID":10,"Name":"Action
-        Attack","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(411.0973,141.111115)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ActionNotViewEnemy","NodeData":{"Offset":"(-82.22229,124.3651)"},"ID":12,"Name":"Action
+        Attack","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(434.9068,129.20636)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ActionNotViewEnemy","NodeData":{"Offset":"(-82.22229,124.3651)"},"ID":12,"Name":"Action
         Not View Enemy","Instant":true},{"Type":"ActionWander","NodeData":{"Offset":"(98.8888245,124.3651)"},"ID":13,"Name":"Action
         Wander","Instant":true}]}]}]}}'
       fieldSerializationData:

@@ -11,6 +11,26 @@ public class ActionDistanceColliderFire : ActionRange
     }
     public override TaskStatus OnUpdate()
     {
-        return TaskStatus.Failure;
+        if (_AICharacterVehicle != null)
+        {
+            if (_AICharacterVehicle.health.IsDead)
+            {
+                return TaskStatus.Failure;
+            }
+        }
+        if (_AICharacterVehicle != null)
+        {
+            if (_AICharacterVehicle._VisionSensor is VisionSensorGuard)
+            {
+                if (((VisionSensorGuard)_AICharacterVehicle._VisionSensor).FireVision.InSight)
+                    return TaskStatus.Success;
+            }
+            else if (_AICharacterVehicle._VisionSensor is VisionSensorSoldier)
+            {
+                if (((VisionSensorSoldier)_AICharacterVehicle._VisionSensor).FireVision.InSight)
+                    return TaskStatus.Success;
+            }
+        }
+        return TaskStatus.Success;
     }
 }

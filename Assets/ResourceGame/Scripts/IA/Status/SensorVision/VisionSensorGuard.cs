@@ -8,6 +8,7 @@ public class VisionSensorGuard : VisionSensor
 {
     [Header("Vision Fire")]
     public DataViewBase FireVision = new DataViewBase();
+    public DataViewBase AttackVision = new DataViewBase();
 
     private void Start()
     {
@@ -64,7 +65,6 @@ public class VisionSensorGuard : VisionSensor
             if (health != null &&
                 IsNotIsThis(health.gameObject) &&
                 !health.IsDead &&
-                //health.IfCanView &&
                 MainVision.IsInSight(health.AimOffset)
                 )
             {

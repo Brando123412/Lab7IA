@@ -11,10 +11,6 @@ public class AICharacterActionLandZombie : AICharacterActionCombat
     {
         this.LoadComponent();
     }
-    private void Update()
-    {
-        
-    }
     public void UpgradeDamage()
     {
         if (health.IsDead) return;
@@ -46,7 +42,6 @@ public class AICharacterActionLandZombie : AICharacterActionCombat
             }
             else
                 Framerate = 0;
-
         }
     }
 }

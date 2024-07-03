@@ -14,8 +14,7 @@ public class HealthZombie : HealthCombat
     }
     public override void DoDamage(int dmg, Health hit)
     {
-
         base.DoDamage(dmg, hit);
-        Debug.Log($"Zombie Recibi danno de : {hit.gameObject.name}");
+        Debug.Log($"Zombie Recibi danno de : {hit.gameObject.name}" + " damage: " + dmg);
     }
 }

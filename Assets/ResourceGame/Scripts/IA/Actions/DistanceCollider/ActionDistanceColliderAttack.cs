@@ -28,12 +28,12 @@ public class ActionDistanceColliderAttack : ActionRange
             }
             else if (_AICharacterVehicle._VisionSensor is VisionSensorGuard)
             {
-                if (((VisionSensorGuard)_AICharacterVehicle._VisionSensor).FireVision.InSight)
+                if (((VisionSensorGuard)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
                     return TaskStatus.Success;
             }
             else if (_AICharacterVehicle._VisionSensor is VisionSensorSoldier)
             {
-                if (((VisionSensorSoldier)_AICharacterVehicle._VisionSensor).FireVision.InSight|| ((VisionSensorSoldier)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
+                if (((VisionSensorSoldier)_AICharacterVehicle._VisionSensor).AttackVision.InSight)
                     return TaskStatus.Success;
             }
         }                        

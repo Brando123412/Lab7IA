@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[TaskCategory("IA SC/Node Move")]
-public class ActionEvade : ActionNodeVehicle
+[TaskCategory("IA SC/Node Attack")]
+public class ActionShootAttack : ActionNodeActions
 {
     public override void OnStart()
     {
@@ -12,31 +12,26 @@ public class ActionEvade : ActionNodeVehicle
     }
     public override TaskStatus OnUpdate()
     {
-        if (_AICharacterVehicle.health.IsDead)
-        {
+        if (_AICharacterAction.health.IsDead)
             return TaskStatus.Failure;
-        }
-
-        SwitchCharacter();
+        SwitchAttackPlay();
         return TaskStatus.Success;
     }
-    void SwitchCharacter()
-    {
 
+    void SwitchAttackPlay()
+    {
         switch (_TypeUnity)
         {
             case TypeAgent.Soldier:
-                if((_VisionSensor.EnemyView))
-                ((AICharacterVehicleLandMilitar)_AICharacterVehicle).MoveToEvadeEnemy();
-                break;
-            case TypeAgent.Civil:
-                ((AICharacterVehicleLandCivil)_AICharacterVehicle).MoveToEvadeEnemy();
+                ((AICharacterActionLandMilitar)_AICharacterAction).Shoot();
                 break;
             case TypeAgent.Guard:
+                ((AICharacterActionLandGuard)_AICharacterAction).Shoot();
                 break;
+
             default:
                 break;
         }
-
+    
     }
 }

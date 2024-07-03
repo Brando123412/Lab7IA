@@ -4,7 +4,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 
 [TaskCategory("IA SC/Node Resouces Action")]
-public class ActionSeekCave : ActionWait
+public class ActionHideCave : ActionWait
 {
     public bool Intro = false;
     public bool RecentlyExited = false;
